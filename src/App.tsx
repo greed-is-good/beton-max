@@ -305,9 +305,9 @@ export default function App() {
     pushLog("Рейс завершен");
     pushMessage("driver", {
       author: "bot",
-      text: `Рейс завершен\nЗаказ: №${ORDER.number}\nСтатус: Завершено`,
+      text: `Выгрузка завершена\nЗаказ: №${ORDER.number}\nСтатус: Завершено`,
     });
-    const text = `По заказу №${ORDER.number} выгрузка завершена\nСтатус: Завершено`;
+    const text = `По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`;
     pushMessage("manager", { author: "bot", text });
     pushMessage("foreman", { author: "bot", text });
   };
