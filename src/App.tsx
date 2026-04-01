@@ -598,11 +598,13 @@ function PhoneMockup({ title, status, messages, onAction }: PhoneProps) {
       <div className="mb-2 text-sm font-semibold text-slatey-700">{title}</div>
       <div className="iphone-frame">
         <div className="iphone-glass">
-          <div className="phone-shell shadow-phone">
-            <div className="flex flex-col">
-              <div className="flex justify-center pt-3">
-                <div className="phone-notch" />
-              </div>
+          <div className="iphone-screen shadow-phone">
+            <div className="iphone-notch">
+              <div className="iphone-camera" />
+              <div className="iphone-speaker" />
+            </div>
+            <div className="phone-shell">
+              <div className="flex flex-col pt-6">
               <div className="px-4 py-3">
                 <div className="flex items-center justify-between">
                   <div>
