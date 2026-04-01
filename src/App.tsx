@@ -605,26 +605,31 @@ function PhoneMockup({ title, status, messages, onAction }: PhoneProps) {
             </div>
             <div className="phone-shell">
               <div className="flex flex-col pt-6">
-              <div className="px-4 py-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-semibold text-slatey-900">MAX-бот</div>
-                    <div className="text-xs text-slatey-500">Рейс №{ORDER.ride}</div>
+                <div className="px-4 py-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm font-semibold text-slatey-900">MAX-бот</div>
+                      <div className="text-xs text-slatey-500">Рейс №{ORDER.ride}</div>
+                    </div>
+                    <span className="rounded-full bg-slatey-100 px-3 py-1 text-[11px] font-semibold text-slatey-600">
+                      {status}
+                    </span>
                   </div>
-                  <span className="rounded-full bg-slatey-100 px-3 py-1 text-[11px] font-semibold text-slatey-600">
-                    {status}
-                  </span>
                 </div>
-              </div>
-              <div className="space-y-3 px-4 pb-4">
-                {messages.length === 0 && (
-                  <div className="rounded-xl border border-dashed border-slatey-200 bg-white px-3 py-3 text-xs text-slatey-400">
-                    Сообщения появятся после запуска рейса
-                  </div>
-                )}
-                {messages.map((message) => (
-                  <MessageBubble key={message.id} message={message} onAction={onAction} />
-                ))}
+                <div className="space-y-3 px-4 pb-4">
+                  {messages.length === 0 && (
+                    <div className="rounded-xl border border-dashed border-slatey-200 bg-white px-3 py-3 text-xs text-slatey-400">
+                      Сообщения появятся после запуска рейса
+                    </div>
+                  )}
+                  {messages.map((message) => (
+                    <MessageBubble
+                      key={message.id}
+                      message={message}
+                      onAction={onAction}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
