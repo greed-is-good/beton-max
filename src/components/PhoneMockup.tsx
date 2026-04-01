@@ -21,7 +21,7 @@ export default function PhoneMockup({ title, status, messages, onAction }: Phone
 
   return (
     <div>
-      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-slatey-200 bg-white px-4 py-2 text-base font-semibold uppercase tracking-wide text-slatey-700 shadow-sm">
+      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-slatey-200 bg-white px-4 py-2 text-base font-semibold text-slatey-700 shadow-sm">
         {title}
       </div>
       <div className="iphone-frame">
