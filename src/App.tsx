@@ -261,14 +261,14 @@ export default function App() {
     if (label === "прораб") {
       pushMessage(role, {
         author: "system",
-        text: `Прораб ${CONTACTS.foreman.name}, телефон: ${CONTACTS.foreman.phone}`,
+        text: `Прораб ${CONTACTS.foreman.name}\n📞 ${CONTACTS.foreman.phone}`,
       });
       return;
     }
     if (label === "менеджер") {
       pushMessage(role, {
         author: "system",
-        text: `Менеджер ${CONTACTS.manager.name}, телефон: ${CONTACTS.manager.phone}`,
+        text: `Менеджер ${CONTACTS.manager.name}\n📞 ${CONTACTS.manager.phone}`,
       });
       return;
     }
