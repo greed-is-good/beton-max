@@ -21,6 +21,7 @@ type ActionId =
   | "driver_arrival_yes"
   | "driver_arrival_no"
   | "driver_unload_start"
+  | "driver_unload_finish"
   | "contact_foreman"
   | "contact_manager"
   | "contact_driver";
@@ -280,6 +281,7 @@ export default function App() {
     pushMessage("driver", {
       author: "bot",
       text: "Выгрузка началась\nБесплатное время: 60 минут\nПосле этого начнется простой",
+      actions: [{ id: uuid(), label: "Выгрузка закончилась", action: "driver_unload_finish" }],
     });
     const text = `По заказу №${ORDER.number} началась выгрузка\nБесплатное время: 60 минут`;
     pushMessage("manager", { author: "bot", text });
@@ -293,8 +295,22 @@ export default function App() {
     pushMessage("driver", {
       author: "bot",
       text: "Бесплатное время выгрузки истекло\nНачался простой",
+      actions: [{ id: uuid(), label: "Выгрузка закончилась", action: "driver_unload_finish" }],
     });
     const text = `По заказу №${ORDER.number} начался простой\nСтатус: Простой`;
+    pushMessage("manager", { author: "bot", text });
+    pushMessage("foreman", { author: "bot", text });
+  };
+
+  const finishByDriver = () => {
+    setStatus("Завершено");
+    setLastSource("Водитель");
+    pushLog("Водитель подтвердил окончание выгрузки");
+    pushMessage("driver", {
+      author: "bot",
+      text: `Выгрузка завершена\nЗаказ: №${ORDER.number}\nСтатус: Завершено`,
+    });
+    const text = `По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`;
     pushMessage("manager", { author: "bot", text });
     pushMessage("foreman", { author: "bot", text });
   };
@@ -346,6 +362,7 @@ export default function App() {
     if (action === "contact_manager") return handleContact(role, "менеджер");
     if (action === "contact_driver") return handleContact(role, "водитель");
     if (action === "driver_unload_start") return startUnloading();
+    if (action === "driver_unload_finish") return finishByDriver();
     if (action === "driver_arrival_yes") return confirmArrivalYes();
     if (action === "driver_arrival_no") return confirmArrivalNo();
     if (action === "driver_arrived") {
