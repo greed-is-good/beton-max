@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: "Manrope", "Segoe UI", system-ui, sans-serif;
+}
+
+.fade-in {
+  animation: fade-in 0.35s ease both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.phone-shell {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%);
+  border-radius: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.phone-notch {
+  width: 120px;
+  height: 20px;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.message-bubble {
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.message-bubble.system {
+  background: #f8fafc;
+}
+
+.message-bubble.bot {
+  background: #eef2ff;
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.message-bubble.user {
+  background: #e8f3ff;
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.status-pill {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(82, 120, 255, 0.12);
+  color: #2a3d9b;
+}
