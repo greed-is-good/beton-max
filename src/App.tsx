@@ -104,6 +104,7 @@ export default function App() {
   const [log, setLog] = useState<LogItem[]>([]);
   const [chats, setChats] = useState<Record<Role, Message[]>>(emptyChats);
   const [arrivalPrompted, setArrivalPrompted] = useState(false);
+  const [idleStarted, setIdleStarted] = useState(false);
 
   const stageIndex = useMemo(() => {
     const order: RideStatus[] = [
@@ -140,12 +141,14 @@ export default function App() {
     setLog([]);
     setChats(emptyChats);
     setArrivalPrompted(false);
+    setIdleStarted(false);
   };
 
   const startTrip = () => {
     setStatus("В пути");
     setEta(ETA_INITIAL);
     setLastSource("1С / Fort Monitor");
+    setIdleStarted(false);
     pushLog("Рейс запущен, данные из 1С и Fort Monitor");
     pushMessage("driver", {
       author: "bot",
@@ -277,6 +280,7 @@ export default function App() {
   const startUnloading = () => {
     setStatus("Выгрузка");
     setLastSource("Водитель");
+    setIdleStarted(false);
     pushLog("Водитель подтвердил начало выгрузки");
     pushMessage("driver", {
       author: "bot",
@@ -291,6 +295,7 @@ export default function App() {
   const startIdle = () => {
     setStatus("Простой");
     setLastSource("Система");
+    setIdleStarted(true);
     pushLog("Бесплатное время истекло, начался простой");
     pushMessage("driver", {
       author: "bot",
@@ -310,7 +315,9 @@ export default function App() {
       author: "bot",
       text: `🏁 Выгрузка завершена\nЗаказ: №${ORDER.number}\nСтатус: Завершено`,
     });
-    const text = `🏁 По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`;
+    const text = idleStarted
+      ? `🏁 По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`
+      : `🏁 По заказу №${ORDER.number} выгрузка завершена\nСтатус: Завершено`;
     pushMessage("manager", { author: "bot", text });
     pushMessage("foreman", { author: "bot", text });
   };
@@ -323,7 +330,9 @@ export default function App() {
       author: "bot",
       text: `🏁 Выгрузка завершена\nЗаказ: №${ORDER.number}\nСтатус: Завершено`,
     });
-    const text = `🏁 По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`;
+    const text = idleStarted
+      ? `🏁 По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`
+      : `🏁 По заказу №${ORDER.number} выгрузка завершена\nСтатус: Завершено`;
     pushMessage("manager", { author: "bot", text });
     pushMessage("foreman", { author: "bot", text });
   };
