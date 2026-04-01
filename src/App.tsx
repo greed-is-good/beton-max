@@ -254,7 +254,7 @@ export default function App() {
     if (label === "водитель") {
       pushMessage(role, {
         author: "system",
-        text: `Водитель ${ORDER.driver}\nТС: ${ORDER.vehicle}\nТелефон: ${ORDER.driverPhone}`,
+        text: `Водитель ${ORDER.driver}\nТС: ${ORDER.vehicle}\n📞 ${ORDER.driverPhone}`,
       });
       return;
     }
