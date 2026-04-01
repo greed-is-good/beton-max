@@ -55,6 +55,17 @@ const ORDER = {
   ride: "1",
 };
 
+const CONTACTS = {
+  manager: {
+    name: "Петров П.П.",
+    phone: "+7 999 222 22 22",
+  },
+  foreman: {
+    name: "Сидоров С.С.",
+    phone: "+7 999 333 33 33",
+  },
+};
+
 const SCENARIOS: Record<Scenario, string> = {
   gps: "С GPS",
   no_gps: "Без GPS",
@@ -306,6 +317,20 @@ export default function App() {
       pushMessage(role, {
         author: "system",
         text: `Водитель ${ORDER.driver}, ТС ${ORDER.vehicle}, телефон: ${ORDER.driverPhone}`,
+      });
+      return;
+    }
+    if (label === "прораб") {
+      pushMessage(role, {
+        author: "system",
+        text: `Прораб ${CONTACTS.foreman.name}, телефон: ${CONTACTS.foreman.phone}`,
+      });
+      return;
+    }
+    if (label === "менеджер") {
+      pushMessage(role, {
+        author: "system",
+        text: `Менеджер ${CONTACTS.manager.name}, телефон: ${CONTACTS.manager.phone}`,
       });
       return;
     }
