@@ -155,16 +155,15 @@ export default function App() {
       ],
     });
     const managerText = `По заказу №${ORDER.number} машина выехала\nТС: ${ORDER.vehicle}\nВодитель: ${ORDER.driver}\nСтатус: В пути\nПлановое прибытие: ${ETA_INITIAL}`;
-    const driverContactLabel = `Водитель ${ORDER.driver}, ТС ${ORDER.vehicle}, телефон: ${ORDER.driverPhone}`;
     pushMessage("manager", {
       author: "bot",
       text: managerText,
-      actions: [{ id: uuid(), label: driverContactLabel, action: "contact_driver" }],
+      actions: [{ id: uuid(), label: "Связаться с водителем", action: "contact_driver" }],
     });
     pushMessage("foreman", {
       author: "bot",
       text: managerText,
-      actions: [{ id: uuid(), label: driverContactLabel, action: "contact_driver" }],
+      actions: [{ id: uuid(), label: "Связаться с водителем", action: "contact_driver" }],
     });
   };
 
@@ -173,16 +172,15 @@ export default function App() {
     setLastSource("Fort Monitor");
     pushLog(`Fort Monitor обновил ETA до ${ETA_UPDATED}`);
     const text = `Обновление по заказу №${ORDER.number}\nМашина в пути\nНовое время прибытия: ${ETA_UPDATED}`;
-    const driverContactLabel = `Водитель ${ORDER.driver}, ТС ${ORDER.vehicle}, телефон: ${ORDER.driverPhone}`;
     pushMessage("manager", {
       author: "bot",
       text,
-      actions: [{ id: uuid(), label: driverContactLabel, action: "contact_driver" }],
+      actions: [{ id: uuid(), label: "Связаться с водителем", action: "contact_driver" }],
     });
     pushMessage("foreman", {
       author: "bot",
       text,
-      actions: [{ id: uuid(), label: driverContactLabel, action: "contact_driver" }],
+      actions: [{ id: uuid(), label: "Связаться с водителем", action: "contact_driver" }],
     });
   };
 
@@ -200,16 +198,15 @@ export default function App() {
       ],
     });
     const text = `ТС прибыло на объект\nЗаказ: №${ORDER.number}\nТС: ${ORDER.vehicle}\nВодитель: ${ORDER.driver}\nСтатус: Прибыл на место`;
-    const driverContactLabel = `Водитель ${ORDER.driver}, ТС ${ORDER.vehicle}, телефон: ${ORDER.driverPhone}`;
     pushMessage("manager", {
       author: "bot",
       text,
-      actions: [{ id: uuid(), label: driverContactLabel, action: "contact_driver" }],
+      actions: [{ id: uuid(), label: "Связаться с водителем", action: "contact_driver" }],
     });
     pushMessage("foreman", {
       author: "bot",
       text,
-      actions: [{ id: uuid(), label: driverContactLabel, action: "contact_driver" }],
+      actions: [{ id: uuid(), label: "Связаться с водителем", action: "contact_driver" }],
     });
   };
 
@@ -243,16 +240,15 @@ export default function App() {
     const text = early
       ? `ТС прибыло на объект раньше расчетного времени\nЗаказ: №${ORDER.number}\nСтатус: Прибыл на место`
       : `ТС прибыло на объект\nЗаказ: №${ORDER.number}\nСтатус: Прибыл на место`;
-    const driverContactLabel = `Водитель ${ORDER.driver}, ТС ${ORDER.vehicle}, телефон: ${ORDER.driverPhone}`;
     pushMessage("manager", {
       author: "bot",
       text,
-      actions: [{ id: uuid(), label: driverContactLabel, action: "contact_driver" }],
+      actions: [{ id: uuid(), label: "Связаться с водителем", action: "contact_driver" }],
     });
     pushMessage("foreman", {
       author: "bot",
       text,
-      actions: [{ id: uuid(), label: driverContactLabel, action: "contact_driver" }],
+      actions: [{ id: uuid(), label: "Связаться с водителем", action: "contact_driver" }],
     });
   };
 
@@ -306,6 +302,13 @@ export default function App() {
 
   const handleContact = (role: Role, label: string) => {
     pushLog(`Запрос связи: ${label}`);
+    if (label === "водитель") {
+      pushMessage(role, {
+        author: "system",
+        text: `Водитель ${ORDER.driver}, ТС ${ORDER.vehicle}, телефон: ${ORDER.driverPhone}`,
+      });
+      return;
+    }
     pushMessage(role, {
       author: "system",
       text: "Запрос на связь отправлен.",
