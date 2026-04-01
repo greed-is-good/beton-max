@@ -15,6 +15,18 @@ npm run dev
 npm run build
 ```
 
+## GitHub Pages (публикация)
+
+Мы используем папку `docs/`, чтобы не смешивать исходники и билд.
+
+Шаги:
+1. Выполнить `npm run build:pages` — билды окажутся в `docs/`.
+2. В GitHub: Settings → Pages → Source = Deploy from a branch.
+3. Branch = `master`, Folder = `/docs`, Save.
+
+После этого сайт будет доступен по адресу:
+`https://greed-is-good.github.io/beton-max/`
+
 ## Архитектура и структура
 
 ```
@@ -69,4 +81,3 @@ src/
 - Только фронтенд, без API и бекенда.
 - Один рейс, три роли: водитель, менеджер, прораб.
 - Все действия синхронно обновляют статус, чаты и лог.
-
