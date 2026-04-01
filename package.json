@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:pages": "npm run build && node -e \"const fs=require('fs');const path=require('path');const dist='dist';const docs='docs';if(fs.existsSync(docs)){fs.rmSync(docs,{recursive:true,force:true});}fs.mkdirSync(docs);for(const f of fs.readdirSync(dist)){fs.cpSync(path.join(dist,f),path.join(docs,f),{recursive:true});}\"",
     "preview": "vite preview"
   },
   "dependencies": {
