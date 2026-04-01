@@ -454,7 +454,7 @@ export default function App() {
                 variant="ghost"
               />
               <ActionButton
-                label='Спросить "Вы прибыли?"'
+                label="Достигнуто ETA (авто-опрос)"
                 onClick={promptArrival}
                 disabled={status !== "В пути" || scenario !== "no_gps" || arrivalPrompted}
               />
