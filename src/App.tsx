@@ -149,7 +149,7 @@ export default function App() {
     pushLog("Рейс запущен, данные из 1С и Fort Monitor");
     pushMessage("driver", {
       author: "bot",
-      text: `Рейс запущен\nЗаказ: №${ORDER.number}\nОбъект: ${ORDER.site}\nСтатус: В пути\nПлановое прибытие: ${ETA_INITIAL}`,
+      text: `🚚 Рейс запущен\nЗаказ: №${ORDER.number}\nОбъект: ${ORDER.site}\nСтатус: В пути\nПлановое прибытие: ${ETA_INITIAL}`,
       actions: [
         { id: uuid(), label: "Я приехал", action: "driver_arrived" },
         {
@@ -166,7 +166,7 @@ export default function App() {
         },
       ],
     });
-    const managerText = `По заказу №${ORDER.number} машина выехала\nТС: ${ORDER.vehicle}\nВодитель: ${ORDER.driver}\nСтатус: В пути\nПлановое прибытие: ${ETA_INITIAL}`;
+    const managerText = `🚚 По заказу №${ORDER.number} машина выехала\nТС: ${ORDER.vehicle}\nВодитель: ${ORDER.driver}\nСтатус: В пути\nПлановое прибытие: ${ETA_INITIAL}`;
     pushMessage("manager", {
       author: "bot",
       text: managerText,
@@ -183,7 +183,7 @@ export default function App() {
     setEta(ETA_UPDATED);
     setLastSource("Fort Monitor");
     pushLog(`Fort Monitor обновил ETA до ${ETA_UPDATED}`);
-    const text = `Обновление по заказу №${ORDER.number}\nМашина в пути\nНовое время прибытия: ${ETA_UPDATED}`;
+    const text = `🕒 Обновление по заказу №${ORDER.number}\nМашина в пути\nНовое время прибытия: ${ETA_UPDATED}`;
     pushMessage("manager", {
       author: "bot",
       text,
@@ -202,14 +202,14 @@ export default function App() {
     pushLog("Fort Monitor зафиксировал прибытие");
     pushMessage("driver", {
       author: "bot",
-      text: `Вы прибыли на объект\nЗаказ: №${ORDER.number}\nНажмите кнопку, когда начнется выгрузка`,
+      text: `✅ Вы прибыли на объект\nЗаказ: №${ORDER.number}\nНажмите кнопку, когда начнется выгрузка`,
       actions: [
         { id: uuid(), label: "Выгрузка началась", action: "driver_unload_start" },
         { id: uuid(), label: "Связаться с прорабом", action: "contact_foreman", variant: "ghost" },
         { id: uuid(), label: "Связаться с менеджером", action: "contact_manager", variant: "ghost" },
       ],
     });
-    const text = `ТС прибыло на объект\nЗаказ: №${ORDER.number}\nТС: ${ORDER.vehicle}\nВодитель: ${ORDER.driver}\nСтатус: Прибыл на место`;
+    const text = `✅ ТС прибыло на объект\nЗаказ: №${ORDER.number}\nТС: ${ORDER.vehicle}\nВодитель: ${ORDER.driver}\nСтатус: Прибыл на место`;
     pushMessage("manager", {
       author: "bot",
       text,
@@ -228,7 +228,7 @@ export default function App() {
     pushLog("GPS недоступен, запрошено подтверждение прибытия");
     pushMessage("driver", {
       author: "bot",
-      text: `Вы прибыли на объект по заказу №${ORDER.number}?`,
+      text: `❓ Вы прибыли на объект по заказу №${ORDER.number}?`,
       actions: [
         { id: uuid(), label: "Да, прибыл", action: "driver_arrival_yes" },
         { id: uuid(), label: "Нет, еще в пути", action: "driver_arrival_no", variant: "ghost" },
@@ -242,7 +242,7 @@ export default function App() {
     pushLog(early ? "Водитель подтвердил раннее прибытие" : "Водитель подтвердил прибытие");
     pushMessage("driver", {
       author: "bot",
-      text: "Прибытие зафиксировано\nНажмите кнопку, когда начнется выгрузка",
+      text: "✅ Прибытие зафиксировано\nНажмите кнопку, когда начнется выгрузка",
       actions: [
         { id: uuid(), label: "Выгрузка началась", action: "driver_unload_start" },
         { id: uuid(), label: "Связаться с прорабом", action: "contact_foreman", variant: "ghost" },
@@ -250,8 +250,8 @@ export default function App() {
       ],
     });
     const text = early
-      ? `ТС прибыло на объект раньше расчетного времени\nЗаказ: №${ORDER.number}\nСтатус: Прибыл на место`
-      : `ТС прибыло на объект\nЗаказ: №${ORDER.number}\nСтатус: Прибыл на место`;
+      ? `⚡ ТС прибыло на объект раньше расчетного времени\nЗаказ: №${ORDER.number}\nСтатус: Прибыл на место`
+      : `✅ ТС прибыло на объект\nЗаказ: №${ORDER.number}\nСтатус: Прибыл на место`;
     pushMessage("manager", {
       author: "bot",
       text,
@@ -280,10 +280,10 @@ export default function App() {
     pushLog("Водитель подтвердил начало выгрузки");
     pushMessage("driver", {
       author: "bot",
-      text: "Выгрузка началась\nБесплатное время: 60 минут\nПосле этого начнется простой",
+      text: "🧱 Выгрузка началась\nБесплатное время: 60 минут\nПосле этого начнется простой",
       actions: [{ id: uuid(), label: "Выгрузка закончилась", action: "driver_unload_finish" }],
     });
-    const text = `По заказу №${ORDER.number} началась выгрузка\nБесплатное время: 60 минут`;
+    const text = `🧱 По заказу №${ORDER.number} началась выгрузка\nБесплатное время: 60 минут`;
     pushMessage("manager", { author: "bot", text });
     pushMessage("foreman", { author: "bot", text });
   };
@@ -294,10 +294,10 @@ export default function App() {
     pushLog("Бесплатное время истекло, начался простой");
     pushMessage("driver", {
       author: "bot",
-      text: "Бесплатное время выгрузки истекло\nНачался простой",
+      text: "⏳ Бесплатное время выгрузки истекло\nНачался простой",
       actions: [{ id: uuid(), label: "Выгрузка закончилась", action: "driver_unload_finish" }],
     });
-    const text = `По заказу №${ORDER.number} начался простой\nСтатус: Простой`;
+    const text = `⏳ По заказу №${ORDER.number} начался простой\nСтатус: Простой`;
     pushMessage("manager", { author: "bot", text });
     pushMessage("foreman", { author: "bot", text });
   };
@@ -308,9 +308,9 @@ export default function App() {
     pushLog("Водитель подтвердил окончание выгрузки");
     pushMessage("driver", {
       author: "bot",
-      text: `Выгрузка завершена\nЗаказ: №${ORDER.number}\nСтатус: Завершено`,
+      text: `🏁 Выгрузка завершена\nЗаказ: №${ORDER.number}\nСтатус: Завершено`,
     });
-    const text = `По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`;
+    const text = `🏁 По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`;
     pushMessage("manager", { author: "bot", text });
     pushMessage("foreman", { author: "bot", text });
   };
@@ -321,9 +321,9 @@ export default function App() {
     pushLog("Рейс завершен");
     pushMessage("driver", {
       author: "bot",
-      text: `Выгрузка завершена\nЗаказ: №${ORDER.number}\nСтатус: Завершено`,
+      text: `🏁 Выгрузка завершена\nЗаказ: №${ORDER.number}\nСтатус: Завершено`,
     });
-    const text = `По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`;
+    const text = `🏁 По заказу №${ORDER.number} выгрузка завершена\nВыгрузка: 90 минут\nПростой: 30 минут\nСтатус: Завершено`;
     pushMessage("manager", { author: "bot", text });
     pushMessage("foreman", { author: "bot", text });
   };
@@ -587,31 +587,35 @@ function PhoneMockup({ title, status, messages, onAction }: PhoneProps) {
   return (
     <div>
       <div className="mb-2 text-sm font-semibold text-slatey-700">{title}</div>
-      <div className="phone-shell shadow-phone">
-        <div className="flex flex-col">
-          <div className="flex justify-center pt-3">
-            <div className="phone-notch" />
-          </div>
-          <div className="px-4 py-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-sm font-semibold text-slatey-900">MAX-бот</div>
-                <div className="text-xs text-slatey-500">Рейс №{ORDER.ride}</div>
+      <div className="iphone-frame">
+        <div className="iphone-glass">
+          <div className="phone-shell shadow-phone">
+            <div className="flex flex-col">
+              <div className="flex justify-center pt-3">
+                <div className="phone-notch" />
               </div>
-              <span className="rounded-full bg-slatey-100 px-3 py-1 text-[11px] font-semibold text-slatey-600">
-                {status}
-              </span>
+              <div className="px-4 py-3">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-sm font-semibold text-slatey-900">MAX-бот</div>
+                    <div className="text-xs text-slatey-500">Рейс №{ORDER.ride}</div>
+                  </div>
+                  <span className="rounded-full bg-slatey-100 px-3 py-1 text-[11px] font-semibold text-slatey-600">
+                    {status}
+                  </span>
+                </div>
+              </div>
+              <div className="space-y-3 px-4 pb-4">
+                {messages.length === 0 && (
+                  <div className="rounded-xl border border-dashed border-slatey-200 bg-white px-3 py-3 text-xs text-slatey-400">
+                    Сообщения появятся после запуска рейса
+                  </div>
+                )}
+                {messages.map((message) => (
+                  <MessageBubble key={message.id} message={message} onAction={onAction} />
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="space-y-3 px-4 pb-4">
-            {messages.length === 0 && (
-              <div className="rounded-xl border border-dashed border-slatey-200 bg-white px-3 py-3 text-xs text-slatey-400">
-                Сообщения появятся после запуска рейса
-              </div>
-            )}
-            {messages.map((message) => (
-              <MessageBubble key={message.id} message={message} onAction={onAction} />
-            ))}
           </div>
         </div>
       </div>
