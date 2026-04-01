@@ -266,6 +266,7 @@ export default function App() {
   const confirmArrivalNo = () => {
     setLastSource("Водитель");
     pushLog("Прибытие не подтверждено водителем");
+    setArrivalPrompted(false);
     pushMessage("driver", {
       author: "system",
       text: "Статус не изменен. Рейс продолжает движение.",
