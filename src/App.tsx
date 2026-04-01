@@ -604,7 +604,7 @@ function PhoneMockup({ title, status, messages, onAction }: PhoneProps) {
               <div className="iphone-speaker" />
             </div>
             <div className="phone-shell">
-              <div className="flex flex-col pt-6">
+              <div className="flex h-full flex-col pt-6">
                 <div className="px-4 py-3">
                   <div className="flex items-center justify-between">
                     <div>
@@ -616,7 +616,7 @@ function PhoneMockup({ title, status, messages, onAction }: PhoneProps) {
                     </span>
                   </div>
                 </div>
-                <div className="space-y-3 px-4 pb-4">
+                <div className="chat-scroll space-y-3 px-4 pb-4">
                   {messages.length === 0 && (
                     <div className="rounded-xl border border-dashed border-slatey-200 bg-white px-3 py-3 text-xs text-slatey-400">
                       Сообщения появятся после запуска рейса

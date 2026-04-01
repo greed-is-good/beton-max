@@ -52,6 +52,17 @@ body {
   background: #ffffff;
   overflow: hidden;
   position: relative;
+  height: 560px;
+}
+
+.chat-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-bottom: 12px;
+}
+
+.phone-shell {
+  height: 100%;
 }
 
 .iphone-notch {
