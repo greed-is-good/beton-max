@@ -11,6 +11,12 @@ type PhoneProps = {
   onAction: (action: ActionId) => void;
 };
 
+const roleIcon: Record<string, string> = {
+  "Водитель": "🚚",
+  "Менеджер заказчика": "🧑‍💼",
+  "Прораб": "👷",
+};
+
 export default function PhoneMockup({ title, status, messages, onAction }: PhoneProps) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -22,6 +28,7 @@ export default function PhoneMockup({ title, status, messages, onAction }: Phone
   return (
     <div className="flex flex-col items-center">
       <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-slatey-200 bg-white px-4 py-2 text-base font-semibold text-slatey-700 shadow-sm">
+        <span className="text-lg">{roleIcon[title] ?? "🔔"}</span>
         {title}
       </div>
       <div className="iphone-frame">
