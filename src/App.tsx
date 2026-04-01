@@ -483,10 +483,6 @@ export default function App() {
               />
             ))}
           </div>
-          <div className="rounded-xl border border-dashed border-slatey-200 bg-white px-4 py-3 text-xs text-slatey-500">
-            Этот прототип использует локальную state machine и mock-данные. Никаких API и
-            интеграций, только синхронная визуальная демонстрация логики MAX-бота.
-          </div>
         </section>
       </main>
     </div>
