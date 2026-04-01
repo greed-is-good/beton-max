@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Role = "driver" | "manager" | "foreman";
 type Scenario = "gps" | "no_gps" | "early";
@@ -593,6 +593,13 @@ type PhoneProps = {
 };
 
 function PhoneMockup({ title, status, messages, onAction }: PhoneProps) {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [messages.length]);
+
   return (
     <div>
       <div className="mb-2 text-sm font-semibold text-slatey-700">{title}</div>
@@ -616,7 +623,7 @@ function PhoneMockup({ title, status, messages, onAction }: PhoneProps) {
                     </span>
                   </div>
                 </div>
-                <div className="chat-scroll space-y-3 px-4 pb-4">
+                <div className="chat-scroll space-y-3 px-4 pb-4" ref={scrollRef}>
                   {messages.length === 0 && (
                     <div className="rounded-xl border border-dashed border-slatey-200 bg-white px-3 py-3 text-xs text-slatey-400">
                       Сообщения появятся после запуска рейса
